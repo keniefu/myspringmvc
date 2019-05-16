@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.OrderMapper">
+    <resultMap id="orderMap" type="order">
+        <id property="oid" column="oid"/>
+        <id property="money" column="money"/>
+        <id property="state" column="state"/>
+        <id property="ordertime" column="ordertime"/>
+        <id property="uid" column="uid"/>
+    </resultMap>
+    <select id="queryOrderByUid" resultMap="orderMap">
+        select oid,money,state,ordertime,uid from j13_order_t where uid = #{uid}
+    </select>
+    <insert id="insertOrder">
+        insert into j13_order_t (oid,money,state,ordertime,uid) values (#{oid},#{money},#{state},#{ordertime},#{uid})
+    </insert>
+    <select id="queryOrderByState" resultMap="orderMap">
+        select oid,money,state,ordertime,uid from j13_order_t where state = #{state}
+    </select>
+    <select id="queryOrderByMoneyRange" resultMap="orderMap">
+        select oid,money,state,ordertime,uid from j13_order_t where money &lt;= #{topMoney} and  money &gt;= #{bottleMoney}
+    </select>
+    <select id="queryOrderByTimeRange" resultMap="orderMap">
+        select oid,money,state,ordertime,uid from j13_order_t where ordertime &lt;= #{postTime} and  ordertime &gt;= #{preTime}
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.storeDemo.mapper.UserMapper">
+    <insert id="regist">
+        insert into `user` (username,nickname,`password`,email,birthday,updatetime,checkid,isActive) values (#{u.username},#{u.nickname},#{u.password},#{u.email},#{u.birthday},#{u.updatetime},#{u.checkid},#{u.isActive})
+    </insert>
+    <update id="active">
+        update `user` set isActive = 'yes' where checkid = #{checkid};
+    </update>
+    <select id="login" resultType="user">
+        select uid,username,nickname,email,birthday,updatetime from user where username = #{username} and password = #{password} and isActive = 'yes'
+    </select>
+    <select id="logincheck" resultType="String">
+        select isActive from user where username = #{username};
+    </select>
+</mapper>

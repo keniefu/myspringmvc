@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.StudentCourseMapper">
+
+
+    <resultMap id="courseMap" type="course">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <collection property="students" ofType="student">
+            <result property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <association property="teacher" javaType="teacher">
+                <result property="id" column="tid"/>
+                <result property="name" column="tname"/>
+            </association>
+        </collection>
+    </resultMap>
+    <select id="queryCourseById" resultMap="courseMap">
+        select s.id as sid,s.name as sname,c.id,c.name,t.id as tid,t.name as tname
+        from j13_course_t c
+        left join j13_stu_course_relation_t r on c.id = r.course_id
+        left join j13_student_t s on r.stu_id = s.id
+        left join j13_teacher_t t on s.teacher_id = t.id
+        WHERE c.id = #{id}
+    </select>
+
+
+    <resultMap id="studentMap" type="student">
+        <result column="sid" property="id"/>
+        <result column="sname" property="name"/>
+        <association property="teacher" javaType="teacher">
+            <result property="id" column="tid"/>
+            <result property="name" column="tname"/>
+        </association>
+        <collection property="courses" ofType="course">
+            <result property="id" column="id"/>
+            <result property="name" column="name"/>
+        </collection>
+    </resultMap>
+    <select id="queryStudentById" resultMap="studentMap">
+        select s.id as sid,s.name as sname,c.id,c.name,t.id as tid,t.name as tname
+        from j13_student_t s
+        left join j13_stu_course_relation_t r on s.id = r.stu_id
+        left join j13_course_t c on r.course_id = c.id
+        left join j13_teacher_t t on s.teacher_id = t.id
+        WHERE s.id = #{id}
+    </select>
+
+
+    <resultMap id="courseMap2" type="course">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <collection property="students" column="id" select="com.cskaoyan.mapper.StudentMapper.queryStudentsByCourseId"/>
+    </resultMap>
+    <select id="queryCourseById2" resultMap="courseMap2">
+        select id,name
+        from j13_course_t
+        WHERE id = #{id}
+    </select>
+</mapper>

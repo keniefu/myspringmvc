@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.ProductMapper">
+    <sql id="commonselect">
+        select <include refid="baseResult"/> from product
+    </sql>
+    <sql id="baseResult">
+        pid,pname,estoreprice,markprice,pnum,cid,imgurl,`desc`
+    </sql>
+    <resultMap id="productMap" type="product">
+        <result property="id" column="pid"/>
+        <result property="name" column="pname"/>
+        <result property="estoreprice" column="estoreprice"/>
+        <result property="markprice" column="markprice"/>
+        <result property="num" column="pnum"/>
+        <result property="cid" column="cid"/>
+        <result property="imgurl" column="imgurl"/>
+        <result property="desc" column="desc"/>
+    </resultMap>
+    <select id="queryProductByCriteria" resultMap="productMap">
+        <include refid="commonselect"/>
+        <where>
+            <if test="pro.id != null and pro.id.Length() gt 0">
+                pname == #{pro.id}
+            </if>
+            <if test="pro.cid != 0">
+                and cid == pro.cid
+            </if>
+            <if test="pro.name != null and pro.name.length() != 0">
+                and pname like #{pro.name}
+            </if>
+            <if test="pro.minestoreprice gt 0">
+                and estoreprice &gt;= #{pro.minestoreprice}
+            </if>
+            <if test="pro.maxestoreprice gt pro.minestoreprice and (pro.minestoreprice gt 0 or pro.minestoreprice == 0)">
+                and estoreprice &lt;= #{pro.maxestoreprice}
+            </if>
+        </where>
+    </select>
+    <resultMap id="helperMap" type="pagehelper">
+        <result property="totalRecordsNum" column="total_records_num"/>
+        <result property="id" column="id"/>
+        <result property="currentPageNum" column="current_page"/>
+        <result property="totalPageNum" column="total_page"/>
+        <result property="hignPrice" column="hignprice"/>
+        <result property="lowPrice" column="lowprice"/>
+        <collection property="records" ofType="product">
+            <result property="id" column="pid"/>
+            <result property="name" column="pname"/>
+            <result property="estoreprice" column="estoreprice"/>
+            <result property="markprice" column="markprice"/>
+            <result property="num" column="pnum"/>
+            <result property="cid" column="cid"/>
+            <result property="imgurl" column="imgurl"/>
+            <result property="desc" column="desc"/>
+        </collection>
+    </resultMap>
+    <sql id="pageselect">
+        select total_records_num,id,current_page,total_page,hignprice,lowprice,<include refid="baseResult"/>
+        from j13_pagehelper_t p
+        left join product pro
+        on estoreprice &lt;= hignprice and estoreprice &gt;= lowprice
+        where id = #{id}
+    </sql>
+    <select id="queryProductThroughPageHelper" resultMap="helperMap">
+        <include refid="pageselect"/>
+    </select>
+    <sql id="pageselect2">
+        select total_records_num,id,current_page,total_page,hignprice,lowprice,<include refid="baseResult"/>
+        from j13_pagehelper_t p
+        left join product pro
+        on estoreprice &lt;= hignprice and estoreprice &gt;= lowprice
+    </sql>
+    <select id="queryProductThroughAllPageHelper" resultMap="helperMap">
+        <include refid="pageselect2"/>
+    </select>
+
+</mapper>

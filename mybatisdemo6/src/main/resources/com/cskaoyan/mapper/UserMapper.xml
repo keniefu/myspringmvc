@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.UserMapper">
+    <cache/>
+    <resultMap id="userMap" type="user">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <association property="userDetail" column="id" select="com.cskaoyan.mapper.UserDetailMapper.queryUserDetailById"/>
+    </resultMap>
+    <select id="queryUserById" resultMap="userMap">
+        select id,username,password,email from j13_user_t where id=#{id}
+    </select>
+</mapper>

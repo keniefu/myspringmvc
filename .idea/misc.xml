@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/interceptor_demo1" />
+    <file type="web" url="file://$PROJECT_DIR$/myssmdemo2" />
+    <file type="web" url="file://$PROJECT_DIR$/myssmdemo3" />
+    <file type="web" url="file://$PROJECT_DIR$/myssmdemo4" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvcdemo1" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvcdemo2" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvcdemo4" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvcdemo5" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/springmvcdemo1/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvcdemo2/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvcdemo3/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvcdemo4/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvcdemo5/pom.xml" />
+        <option value="$PROJECT_DIR$/interceptor_demo1/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatisdemo1/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatisdemo2/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatisdemo3/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatisdemo4/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatisdemo5/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatisdemo6/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatisdemo7/pom.xml" />
+        <option value="$PROJECT_DIR$/myssmdemo1/pom.xml" />
+        <option value="$PROJECT_DIR$/myssmdemo2/pom.xml" />
+        <option value="$PROJECT_DIR$/myssmdemo3/pom.xml" />
+        <option value="$PROJECT_DIR$/myssmdemo4/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

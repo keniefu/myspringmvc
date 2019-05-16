@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="myssmdemo2" />
+        <module name="interceptor_demo1" />
+        <module name="mybatisdemo7" />
+        <module name="mybatisdemo6" />
+        <module name="mybatisdemo5" />
+        <module name="mybatisdemo4" />
+        <module name="mybatisdemo3" />
+        <module name="mybatisdemo2" />
+        <module name="mybatisdemo1" />
+        <module name="myssmdemo4" />
+        <module name="springmvcdemo5" />
+        <module name="springmvcdemo4" />
+        <module name="myssmdemo1" />
+        <module name="springmvcdemo2" />
+        <module name="springmvcdemo1" />
+        <module name="myssmdemo3" />
+        <module name="springmvcdemo3" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
+  </component>
+</project>

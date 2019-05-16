@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mynamespace">
+    <insert id="insertUser" parameterType="com.cskaoyan.bean.User">
+        insert into user (username,password,email) values (#{username},#{password},#{email});
+    </insert>
+    <update id="updateUserById" parameterType="com.cskaoyan.bean.User">
+        update user set username = #{username}, password = #{password}, email = #{email} where id = #{id};
+    </update>
+    <select id="queryUserById" resultType="com.cskaoyan.bean.User" parameterType="int">
+        select username,password,email,id from user where id = #{id};
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.StudentMapper">
+    <resultMap id="studentMap" type="student">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="teacher" column="teacher_id" select="com.cskaoyan.mapper.TeacherMapper.queryTeacherById"/>
+    </resultMap>
+    <select id="queryStudentsByCourseId" resultMap="studentMap">
+        select s.id,s.name
+        from j13_stu_course_relation_t r
+        left join j13_student_t s
+        on r.stu_id = s.id
+        WHERE r.course_id = #{cid}
+    </select>
+</mapper>

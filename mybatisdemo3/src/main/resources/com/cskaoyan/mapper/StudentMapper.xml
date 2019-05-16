@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.StudentMapper">
+    <select id="queryCount" resultType="_int">
+        select count(1) from j13_student_t;
+    </select>
+    <insert id="insertStudent">
+        insert into j13_student_t (name,age,lazy,deleted,gender) values (#{name},#{agex},#{lazy},#{deleted},#{gender})
+    </insert>
+    <select id="queryNameById" resultType="string">
+        select name from j13_student_t where id = #{id}
+    </select>
+    <select id="queryNamesByAge" resultType="string">
+        select name from j13_student_t where age = #{age}
+    </select>
+    <select id="queryStudentById" resultType="student">
+        select id as idx,name,gender,age as agex,lazy,deleted from j13_student_t where id = #{id}
+    </select>
+    <select id="queryStudentByGender" resultType="student">
+        select id as idx,name,gender,age as agex,lazy,deleted from j13_student_t where gender = #{gender}
+    </select>
+    <resultMap id="studentMap" type="student">
+        <id property="idx" column="id"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="agex" column="age"/>
+        <result property="lazy" column="lazy"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+    <select id="queryStudentByLazy" resultMap="studentMap">
+        select id,name,gender,age,lazy,deleted from j13_student_t where lazy = #{lazy}
+    </select>
+</mapper>
